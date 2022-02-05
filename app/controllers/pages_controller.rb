@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
   def home
-    @products = Product.order(created_at: :desc).page(params[:page])
+    @products = Product.order(title: :asc).page(params[:page])
   end
 end
