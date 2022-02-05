@@ -1,15 +1,14 @@
 require 'faker'
 
-20.times do
+50.times do
   Product.create(
     title: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
-    price: Faker::Number.decimal,
-    image: Faker::LoremPixel.image,
+    price: Faker::Number.decimal(l_digits: 2),
   )
 end
 
-20.times do
+10.times do
   Category.create(
     title: Faker::Coffee.variety,
   )
