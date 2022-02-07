@@ -1,11 +1,15 @@
-<nav class="navbar sticky-top navbar-light bg-light py-3 border-bottom light justify-content-between">
+<nav class="navbar sticky-top navbar-light bg-light py-3 border-bottom light">
   <div class="container">
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to '', 'https://getbootstrap.com/docs/5.1/utilities/text/', class: "fa fa-home link-secondary text-decoration-none" %>
+          <%= link_to '', root_path, class: "fa fa-home link-secondary text-decoration-none" %>
         </li>
       </ul>
+      <%= form_tag root_path, method: :get, class: 'd-flex', id: 'search-form' do %>
+        <%= text_field_tag :search, params[:search], class: 'form-control me-1', placeholder: 'Search' %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-outline-secondary' %>
+      <% end %>
     </div>
   </div>
 </nav>

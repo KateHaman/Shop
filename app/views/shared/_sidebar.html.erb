@@ -1,0 +1,9 @@
+<div class="d-flex flex-column flex-shrink-0 bg-transparent border-end light" style="height: 100%">
+  <ul class="nav nav-pills flex-column mb-auto mt-5">
+    <li class="nav-item mt-4">
+      <% @categories.each do |category| %>
+        <%= link_to category.title, products_path(product: {category_id: category.id}), class: "link-secondary text-decoration-none pt-2 #{'fw-bold' if @category.to_i == category.id}" %>
+        </li>
+      <% end %>
+      </ul>
+</div>
