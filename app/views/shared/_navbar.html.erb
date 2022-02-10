@@ -6,15 +6,15 @@
           <%= link_to '', root_path, class: "fa fa-home link-secondary text-decoration-none" %>
         </li>
       </ul>
-      <%= form_tag root_path, method: :get, class: 'd-flex', id: 'search-form ui-widget' do %>
-        <%= text_field_tag :search, params[:search], class: 'form-control me-1', placeholder: 'Search', id: 'autocomplete' %>
-        <%= submit_tag "Search", :name => nil, class: 'btn btn-outline-secondary' %>
+      <%= form_tag root_path, method: :get, class: 'd-flex position: relative', id: 'search-form ui-widget' do %>
+        <%= text_field_tag :search, params[:search], class: 'form-control me-1 ', placeholder: 'Search', id: 'autocomplete', data: { autocomplete_source: Product.pluck(:title) } %>
+        <%= submit_tag "Search", name: nil, class: 'btn btn-outline-secondary' %>
       <% end %>
     </div>
   </div>
 </nav>
 <script>
     $("#autocomplete").autocomplete({
-        source: [ <%= Product.pluck(:title) %> ]
+        source: $('#autocomplete').data('autocomplete-source')
     });
 </script>
