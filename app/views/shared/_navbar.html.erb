@@ -1,10 +1,28 @@
 <nav class="navbar sticky-top navbar-light bg-light py-3 border-bottom light">
   <div class="container">
     <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row align-items-center">
         <li class="nav-item">
-          <%= link_to '', root_path, class: "fa fa-home link-secondary text-decoration-none" %>
+          <%= link_to '', root_path, class: "fa fa-coffee link-secondary text-decoration-none" %>
         </li>
+        <% if user_signed_in? %>
+          <li class="nav-item ms-2">
+            Logged in as <strong><%= current_user.email %></strong>.
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Edit profile', edit_user_registration_path, class: 'btn btn-secondary ms-4' %>
+          </li>
+          <li class="nav-item">
+            <%= button_to 'Log out', destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: 'btn btn-secondary ms-4' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-secondary ms-4' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: 'btn btn-secondary ms-4' %>
+          </li>
+        <% end %>
       </ul>
       <%= form_tag root_path, method: :get, class: 'd-flex position: relative', id: 'search-form ui-widget' do %>
         <%= text_field_tag :search, params[:search], class: 'form-control me-1 ', placeholder: 'Search', id: 'autocomplete', data: { autocomplete_source: Product.pluck(:title) } %>

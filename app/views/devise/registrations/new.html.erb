@@ -1,0 +1,32 @@
+<div class="text-center mb-2">
+  <%= image_tag('https://www.vectorkhazana.com/assets/images/products/First_I_Drink_The_Coffee.png', width: '250') %>
+  <h2>Please sign in first:</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false} }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control-sm'%>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br/>
+      <%= f.password_field :password, autocomplete: "new-password", class:'form-control-sm' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control-sm' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class:'btn btn-dark mt-2 mb-2' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

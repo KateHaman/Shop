@@ -1,0 +1,22 @@
+<div class="text-center mb-2">
+  <h2 class="mt-4">Haven't received any reset password instructions?</h2>
+  <%= image_tag('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0bedb362-1325-47fe-8fb8-8a1224de0221/detwzk0-a67d06a6-6e6d-48a0-9669-8d9536ce43b3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBiZWRiMzYyLTEzMjUtNDdmZS04ZmI4LThhMTIyNGRlMDIyMVwvZGV0d3prMC1hNjdkMDZhNi02ZTZkLTQ4YTAtOTY2OS04ZDk1MzZjZTQzYjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.uV7YcMXGOuqc7afj0VMhqYnzFyrilq5OpxmEJFI79Po', width: '250') %>
+  <h3>No worries.</h3>
+  <h4> Check your junk mail<br>or let's try once more...<br>Fill out 'Email' field <br>to resend unlock instructions,
+    please.</h4>
+
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control-sm'%>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Resend unlock instructions", class: 'btn btn-dark mt-2 mb-2'%>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
