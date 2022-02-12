@@ -1,29 +1,9 @@
-<nav class="navbar bg-transparent p-0">
-  <div class="container-fluid justify-content-between p-0 ms-4">
-    <p class="text-secondary m-0">Choose your coffee for everyday!</p>
-    <div class="price-diapason-form">
-      <%= form_for('product', method: :get, :html => { :id => 'price_form' }) do |f| %>
-        <div class="input-group">
-          <%= f.label 'Price:', class: 'text-secondary me-2' %>
-          <%= f.select :price_info, ['Less than 25 UAH', '25-50 UAH', '50-75 UAH', 'More than 75 UAH'], { selected: @price_info || 'Less than 25 UAH' }, { onchange: 'this.form.submit();' } %>
-        </div>
-      <% end %>
-    </div>
-    <div class="sorting-form">
-      <%= form_for('product', method: :get, :html => { :id => 'lead_form' }) do |f| %>
-        <div class="input-group">
-          <%= f.label 'Sort by:', class: 'text-secondary me-2' %>
-          <%= f.select :order, ['Name: A to Z', 'Name: Z to A', 'Price: High to Low', 'Price: Low to High'], { selected: @order || 'Name: A to Z' }, { onchange: 'this.form.submit();' } %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</nav>
-<div class="cards-container mb-5" style="height: 100%">
-  <% @products.each_slice(3) do |products| %>
-    <div class="row-6 m-0 d-flex">
-      <% products.each do |product| %>
-        <div class="card mt-5 ms-5 p-0" style="width: 300px;">
+<%= render partial: 'products/page_nav' %>
+<div class="products-container ms-4 me-4">
+  <div class="row p-0 m-0 mt-4 mb-4 d-flex justify-content-evenly">
+    <% @products.each do |product| %>
+      <div class="col col-lg-4 col-md-6">
+        <div class="card mb-4">
           <%= image_tag('https://picsum.photos/id/766/300/', class: 'rounded-top') %>
           <div class="card-body">
             <h5 data-bs-toggle="tooltip" title="<%= product.title %>" class="card-title"><%= link_to product.title, product, class: "link-secondary" %></h5>
@@ -32,8 +12,10 @@
               per 100g.</p>
           </div>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-  <%= paginate @products %>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination d-flex justify-content-center mb-5 mt-0">
+    <%= paginate @products %>
+  </div>
 </div>
