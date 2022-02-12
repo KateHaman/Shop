@@ -33,6 +33,9 @@ gem 'jbuilder'
 # flexible authentication solution
 gem 'devise'
 
+# an easy-to-use interface for managing your data
+gem 'rails_admin', ['>= 3.0.0.rc', '< 4']
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -72,3 +75,4 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+gem "sassc-rails"

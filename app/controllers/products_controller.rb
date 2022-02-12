@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @products = Product.search(params[:search]).page(params[:page])
     @categories = Category.all
