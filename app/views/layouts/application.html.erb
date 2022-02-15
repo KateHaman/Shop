@@ -20,10 +20,12 @@
 <%= render partial: 'shared/navbar' %>
 <div class="container mb-5">
   <% if notice %>
-    <p class="alert alert-success mt-2 mb-2"><%= notice %></p>
+    <p class="alert alert-success text-center mt-2 mb-2"><%= notice %></p>
   <% end %>
   <% if alert %>
-    <p class="alert alert-danger mt-2 mb-2"><%= alert %></p>
+    <div class="danger-alert d-flex justify-content-center">
+      <p class="alert alert-danger w-50 text-center mt-5"><%= alert %></p>
+    </div>
   <% end %>
   <%= yield %>
 </div>
