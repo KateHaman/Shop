@@ -5,10 +5,10 @@
         <li class="nav-item">
           <%= link_to '', root_path, class: "fa fa-coffee link-secondary text-decoration-none mt-2 mb-2" %>
         </li>
-        <% if current_user %>
-          <li class="nav-item">
-            <%= link_to '', order_path(current_order), class: 'btn btn-secondary m-2 fa fa-shopping-cart' %>
-          </li>
+        <li class="nav-item">
+          <%= link_to '', current_order, class: 'btn btn-secondary m-2 fa fa-shopping-cart' %>
+        </li>
+        <% if user_signed_in? %>
           <li class="nav-item ms-2 text-muted">
             Logged in as <strong><%= current_user.email %></strong>
           </li>
