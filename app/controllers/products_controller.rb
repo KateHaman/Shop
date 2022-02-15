@@ -1,9 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @products = Product.search(params[:search]).page(params[:page])
-    @categories = Category.all
+    @categories = Category.where("parent_id = '0'").order(:title)
     @category = params.dig(:product, :category_id)
     @products = @products.where(category_id: @category) if @category
     @order = params.dig(:product, :order)

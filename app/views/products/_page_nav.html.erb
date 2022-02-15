@@ -2,7 +2,7 @@
   <div class="container-fluid justify-content-between p-0 ms-4">
     <p class="text-secondary m-0 mb-2">Choose your coffee for everyday!</p>
     <div class="price-diapason-form mb-2">
-      <%= form_for('product', method: :get, :html => { :id => 'price_form' }) do |f| %>
+      <%= form_for('product', method: :get, html: { id: 'price_form' }) do |f| %>
         <div class="input-group">
           <%= f.label 'Price:', class: 'text-secondary me-2' %>
           <%= f.select :price_info, ['Less than 25 UAH', '25-50 UAH', '50-75 UAH', 'More than 75 UAH'], { selected: @price_info || 'Less than 25 UAH' }, { onchange: 'this.form.submit();' } %>
@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <div class="sorting-form mb-2">
-      <%= form_for('product', method: :get, :html => { :id => 'lead_form' }) do |f| %>
+      <%= form_for('product', method: :get, html: { id: 'lead_form' }) do |f| %>
         <div class="input-group">
           <%= f.label 'Sort by:', class: 'text-secondary me-2' %>
           <%= f.select :order, ['Name: A to Z', 'Name: Z to A', 'Price: High to Low', 'Price: Low to High'], { selected: @order || 'Name: A to Z' }, { onchange: 'this.form.submit();' } %>

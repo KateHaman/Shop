@@ -8,11 +8,17 @@
           <div class="card-body">
             <h5 data-bs-toggle="tooltip" title="<%= product.title %>" class="card-title"><%= link_to product.title, product, class: "link-secondary" %></h5>
             <p class="card-text text-secondary">Flavours: <i><%= product.description.truncate(27) %></i></p>
-            <p class="card-text text-secondary"><%= number_to_currency(product.price.round, unit: "UAH", format: "%n %u") %>
-              per 100g.</p>
+            <div class="add-to-cart mt-2 mb-2 d-flex align-items-center justify-content-between">
+              <h6 class="card-text text-secondary m-0"><%= number_to_currency(product.price.round, unit: "UAH", format: "%n %u") %>
+                per 100g.</h6>
+              <%= button_to '', product_order_items_path(product), method: :post, class: 'fa fa-shopping-cart btn btn-secondary' %>
+            </div>
           </div>
         </div>
       </div>
+    <% end %>
+    <% if @products.count == 0 %>
+      <p class="alert alert-warning ms-4">Sorry, no coffee available.</p>
     <% end %>
   </div>
   <div class="pagination d-flex justify-content-center mb-5 mt-0">

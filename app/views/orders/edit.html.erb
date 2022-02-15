@@ -1,0 +1,23 @@
+<div class="text-center mb-2">
+  <h2 class="mt-4">Would like some coffe?</h2>
+  <%= image_tag('https://www.nicepng.com/png/full/23-233571_after-some-initial-sketches-i-decided-to-create.png', width: '250') %>
+  <h5 class="mt-2">Please give us info <br/> for the admin to contact you <br/> to perform your order.</h5>
+
+  <%= form_for(@order) do |f| %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name, required: true, placeholder: 'How may we address you?', class: 'form-control-sm'%>
+    </p>
+    <p>
+      <%= f.label :email %><br>
+      <%= f.email_field :email, required: true, class: 'form-control-sm' %>
+    </p>
+    <p>
+      <%= f.label :delivery_info %><br>
+      <%= f.text_area :delivery_info, required: true, placeholder: 'How could we deliver the order of yours?', cols: 24, rows: 5, class: 'form-control-sm' %>
+    </p>
+    <p>
+      <%= f.submit 'Place an Order', class: 'btn btn-dark mb-5' %>
+    </p>
+  <% end %>
+</div>

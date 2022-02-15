@@ -1,0 +1,5 @@
+class RemoveOrderFromCategories < ActiveRecord::Migration[7.0]
+  def change
+    remove_column :categories, :order
+  end
+end

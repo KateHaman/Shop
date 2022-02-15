@@ -1,0 +1,9 @@
+<div class="ms-3">
+  <ul class="nav nav-pills flex-column mb-auto mt-2">
+    <li class="nav-item">
+      <% subcategories.each do |subcategory| %>
+        <p class="text-muted">* <%= link_to subcategory.title, products_path(product: { category_id: subcategory.id }), class: "link-secondary text-decoration-none pt-2 #{'fw-bold' if @category.to_i == subcategory.id}" %></p>
+        </li>
+      <% end %>
+      </ul>
+</div>

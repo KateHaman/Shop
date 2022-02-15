@@ -1,9 +1,10 @@
 <div class="d-flex flex-column flex-shrink-0 bg-transparent border-end light h-100">
-  <ul class="nav nav-pills flex-column mb-auto mt-5">
+  <ul class="nav nav-pills flex-column mb-5 mt-5">
     <li class="nav-item mt-4">
       <% @categories.each do |category| %>
-        <%= link_to category.title, products_path(product: {category_id: category.id}), class: "link-secondary text-decoration-none pt-2 #{'fw-bold' if @category.to_i == category.id}" %>
+        <%= link_to category.title, products_path(product: { category_id: category.id }), class: "link-secondary text-decoration-none pt-2 #{'fw-bold' if @category.to_i == category.id}" %>
         </li>
+        <%= render 'shared/subcategories', subcategories: category.subcategories  %>
       <% end %>
       </ul>
 </div>
