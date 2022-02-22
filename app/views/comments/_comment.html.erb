@@ -1,0 +1,13 @@
+  <div class="row d-flex flex-row justify-content-center">
+    <% @comments.each do |comment| %>
+      <div class="col-sm-4 text-center mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <p class="card-text"><%= comment.user.email %> rated ''<%= @product.title %>'': <%= comment.rating %>
+              <br> <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago.</p>
+            <p class="card-text"><i>'<%= comment.body %>'</i></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>

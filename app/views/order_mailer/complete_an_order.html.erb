@@ -1,0 +1,37 @@
+<table role="presentation" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f6f6f6; width: 100%;">
+  <tr>
+    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
+    <td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; max-width: 580px; padding: 10px; width: 580px; margin: 0 auto;">
+      <div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 580px; padding: 10px;">
+        <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; border-radius: 3px; width: 100%;">
+          <tr>
+            <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;">
+              <table role="presentation" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+                <tr>
+                  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
+                    <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Hi, <%= @order.name %>
+                      ,</p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Your
+                order has been shipped:</p>
+              <% @order.order_items.each do |order_item| %>
+                <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">* <%= order_item.product.title %>
+                  <br>
+                  * Description: <%= order_item.product.description %><br>
+                  * Price: <%= number_to_currency(order_item.product.price.round, unit: "UAH", format: "%n %u") %><br>
+                  * Quantity: <%= order_item.quantity %></p>
+                <hr>
+              <% end %>
+              <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Totally,
+                you've spent <%= number_to_currency(@order.subtotal.round, unit: "UAH", format: "%n %u") %> on
+                coffee.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,54 @@
+<% if @orders.present? %>
+  <h2 class="mt-4 text-muted">My Orders:</h2>
+  <table class="table table-hover table-striped mt-4 mb-4">
+    <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if current_user.admin? %>
+      <% @admin_orders.each do |admin_order| %>
+        <tr>
+          <td><%= admin_order.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+          <td><%= (admin_order.status).humanize %></td>
+          <td>
+            <% admin_order.order_items.each do |order_item| %>
+              <p>- Title:<%= order_item.product.title %><br>
+                - Description: <%= order_item.product.description %><br>
+                - Price: <%= number_to_currency(order_item.product.price.round, unit: "UAH", format: "%n %u") %><br>
+                - Quantity: <%= order_item.quantity %><br></p>
+            <% end %>
+            <p><b>User ID:</b> <%= admin_order.user_id %><br></p>
+            <p><b>Total:</b> <%= number_to_currency(admin_order.subtotal.round, unit: "UAH", format: "%n %u") %></p>
+            <% unless admin_order.completed? || admin_order.canceled? %>
+              <%= link_to 'Complete', complete_order_path(admin_order), method: :post, class: 'link-secondary me-2' %>
+              <%= link_to 'Cancel', cancel_order_path(admin_order), method: :post, class: 'link-secondary ms-2' %>
+            <% end %>
+      <% end %>
+      </tr>
+    <% else %>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+          <td><%= (order.status).humanize %></td>
+          <td>
+            <% order.order_items.each do |order_item| %>
+              <p>- Title:<%= order_item.product.title %><br>
+                - Description: <%= order_item.product.description %><br>
+                - Price: <%= number_to_currency(order_item.product.price.round, unit: "UAH", format: "%n %u") %><br>
+                - Quantity: <%= order_item.quantity %><br></p>
+            <% end %>
+            <p><b>Total:</b> <%= number_to_currency(order.subtotal.round, unit: "UAH", format: "%n %u") %></p>
+          </td>
+        </tbody>
+        </table>
+        <h6>You have invested <%= number_to_currency(order.subtotal.round, unit: "UAH", format: "%n %u") %> in
+          coffee.</h6>
+      <% end %>
+    <% end %>
+<% else %>
+  <p class="alert alert-warning mt-4 text-center">You haven't placed any orders at the Coffee Shop yet.</p>
+<% end %>

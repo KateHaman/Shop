@@ -1,0 +1,31 @@
+.page-item.active .page-link {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+
+.sticky-top {
+  z-index: 1 !important;
+}
+
+a[href^="mailto:"] {
+  font-size: 16px;
+  line-height: 32px;
+  color: #6c757d !important;
+}
+
+#order-row {
+  --bs-gutter-x: 0rem !important;
+}
+
+#comment_rating{
+  color: #6c757d !important;
+}
+
+.form-control {
+  color: #6c757d !important;
+
+}
+
+//.comment-form {
+//    display: none;
+//}

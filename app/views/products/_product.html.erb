@@ -1,0 +1,20 @@
+<div class="col-10 col-sm-8 col-lg-6">
+  <%= image_tag('https://picsum.photos/id/766/300/', class: 'd-block mx-lg-auto img-fluid shadow', width: '700', height: '500', loading: 'lazy') %>
+</div>
+<div class="col-lg-6 text-muted">
+  <h1 class="display-5 fw-bold lh-1 mb-3"><%= @product.title %></h1>
+  <p class="lead"><b>Coffee description: </b><i><%= @product.description %></i></p>
+  <p class="lead"><b>Coffee type: </b><i><%= @product.category.title %></i></p>
+  <p class="lead"><b>Price: </b><i><%= number_to_currency(@product.price.round, unit: "UAH", format: "%n %u") %>
+    per 100g.</i></p>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <%= button_to 'Add to Cart', product_order_items_path(@product), method: :post, class: 'btn btn-secondary btn-lg px-4 me-md-2' %>
+    <%= link_to 'Back to Products', root_path(@product), class: 'btn btn-outline-secondary btn-lg px-4 me-md-2' %>
+    <%#= link_to 'Rate Coffee', nil, class: 'btn btn-secondary btn-lg px-4', id: 'reply-button' %>
+  </div>
+  <div class="mt-5 comment-form">
+    <h3>Rate a Product:</h3>
+    <%= render partial: 'comments/form' %>
+  </div>
+</div>
+

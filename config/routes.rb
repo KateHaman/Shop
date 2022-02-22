@@ -12,7 +12,13 @@ Rails.application.routes.draw do
     post 'order_items/:id/add', to: 'order_items#add_quantity', as: 'order_item_add'
     post 'order_items/:id/reduce', to: 'order_items#reduce_quantity', as: 'order_item_reduce'
   end
-  resources :orders
+  resources :comments
+  resources :orders do
+    member do
+      post 'complete'
+      post 'cancel'
+    end
+  end
   get 'orders/:id/', to: 'products#index'
   root 'products#index'
 end

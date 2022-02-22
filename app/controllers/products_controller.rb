@@ -32,6 +32,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @category = params.dig(:product, :category_id)
+    @comments = @product.comments.order(created_at: :desc)
+    @comment = @product.comments.build
   end
 
   private

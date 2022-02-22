@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
 
-  enum status: %i[draft in_progress ordered canceled]
+  enum status: %i[draft in_progress completed canceled]
 
   def subtotal
     order_items.map(&:total_price).sum

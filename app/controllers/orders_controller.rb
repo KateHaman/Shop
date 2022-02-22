@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order
 
+  def index
+    @orders = Order.where(user: current_user).where.not(status: 'draft').order(:created_at)
+    @admin_orders = Order.all.where.not(status: 'draft').order(:created_at)
+  end
+
   def show
     @order_items = @order.order_items.order(:created_at)
   end
@@ -15,7 +20,22 @@ class OrdersController < ApplicationController
   def update
     @order.in_progress!
     @order.update(order_params)
-    redirect_to root_path
+    OrderMailer.with(user: current_user, order_items: @order.order_items, order: @order).place_an_order.deliver_now
+    redirect_to root_path, notice: 'Your order was successfully created.'
+  end
+
+  def complete
+    @order = Order.find(params[:id])
+    @order.completed!
+    OrderMailer.with(user: current_user, order_items: @order.order_items, order: @order).complete_an_order.deliver_now
+    redirect_to root_path, notice: 'The order was successfully completed.'
+  end
+
+  def cancel
+    @order = Order.find(params[:id])
+    @order.canceled!
+    OrderMailer.with(user: current_user, order_items: @order.order_items, order: @order).cancel_an_order.deliver_now
+    redirect_to root_path, notice: 'The order was successfully canceled.'
   end
 
   private

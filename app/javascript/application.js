@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
+import 'jquery-ujs'
 
 document.addEventListener("turbo:load", () => {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-ba-toggle="tooltip"]'))

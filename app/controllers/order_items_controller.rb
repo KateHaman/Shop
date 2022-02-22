@@ -24,7 +24,9 @@ class OrderItemsController < ApplicationController
   end
 
   def reduce_quantity
-    if @order_item.quantity > 1
+    if @order_item.quantity <= 1
+      @order_item.destroy
+    else
       @order_item.quantity -= 1
     end
     @order_item.save
