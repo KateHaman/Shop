@@ -38,6 +38,9 @@ gem 'rails_admin', ['>= 3.0.0.rc', '< 4']
 
 gem 'faker'
 
+# securely configure Rails applications
+gem 'figaro'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
