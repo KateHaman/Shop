@@ -10,16 +10,10 @@ class OrdersController < ApplicationController
     @order_items = @order.order_items.order(:created_at)
   end
 
-  def destroy
-    @order.destroy
-    redirect_to root_path
-  end
-
   def edit; end
 
   def update
-    @order.in_progress!
-    @order.update(order_params)
+    @order.update(order_params.merge(status: :in_progress))
     OrderMailer.with(user: current_user, order_items: @order.order_items, order: @order).place_an_order.deliver_now
     redirect_to root_path, notice: 'Your order was successfully created.'
   end
@@ -36,6 +30,11 @@ class OrdersController < ApplicationController
     @order.canceled!
     OrderMailer.with(user: current_user, order_items: @order.order_items, order: @order).cancel_an_order.deliver_now
     redirect_to root_path, notice: 'The order was successfully canceled.'
+  end
+
+  def destroy
+    @order.destroy
+    redirect_to root_path
   end
 
   private

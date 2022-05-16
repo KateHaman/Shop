@@ -5,11 +5,11 @@
     <% end %>
   <% end %>
   <div class="d-flex align-items-center">
-    <%== f.text_area :body, placeholder: 'Add your comment here..', class: 'form-control p-2 mb-3', rows: 1 %>
+    <%== f.text_area :body, placeholder: 'Add your comment here..', required: true, class: 'form-control p-2 mb-3', rows: 1 %>
   </div>
   <div class="mb-3">
-    <%= f.select :rating, [*1..5], prompt: 'Select Coffee Rate' %>
+    <%= f.select :rating, [*1..5], prompt: 'Select Coffee Rate', required: true %>
   </div>
-  <%= f.hidden_field :product_id, value:@product.id %>
+  <%= f.hidden_field :product_id, value: @product.id %>
   <div><%= f.submit 'Rate Coffee', class: 'btn btn-secondary' %></div>
 <% end %>
